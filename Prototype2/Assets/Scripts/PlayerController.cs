@@ -1,17 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     //Horizontal input
     private float horizontalInput;
     //Player Speed
-    public float speed = 10.0f;
+    [SerializeField] private float speed = 10.0f;
     //x Axis Limit
-    public float xRange = 10.0f;
+    [SerializeField] private float xRange = 10.0f;
     //Projectile prefab
-    public GameObject projectilePrefab;
+    [SerializeField] private GameObject projectilePrefab;
+    private const string horizontal = "Horizontal";
 
     // Start is called before the first frame update
     void Start()
@@ -23,9 +22,9 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //Get the horizontal input
-        horizontalInput = Input.GetAxis("Horizontal");
+        horizontalInput = Input.GetAxis(horizontal);
         //Move the player
-        transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
+        transform.Translate(Vector3.right * (horizontalInput * Time.deltaTime * speed));
 
         //limit Movement
         if(transform.position.x < -xRange)
